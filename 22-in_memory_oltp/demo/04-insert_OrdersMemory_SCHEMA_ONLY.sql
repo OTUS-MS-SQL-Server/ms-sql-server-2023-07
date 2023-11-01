@@ -17,7 +17,7 @@ BEGIN TRAN;
   END;  
 COMMIT;
 GO
--- 2s
+-- 1s
 -- Проверим, что данные вставились
 SELECT COUNT(*) FROM Sales.OrdersMemory_SCHEMA_ONLY;
 GO
@@ -76,4 +76,4 @@ GO
 
 
 EXEC Sales.OrdersMemory_SCHEMA_ONLY_Insert @RowCount = 50000;
---3-4 s 
+--2 s 

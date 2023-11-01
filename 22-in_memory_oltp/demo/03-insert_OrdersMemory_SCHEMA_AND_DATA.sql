@@ -17,7 +17,7 @@ BEGIN TRAN;
   END;  
 COMMIT;
 GO
- --2s
+ --1s
 -- Проверим, что данные вставились
 SELECT COUNT(*) FROM Sales.OrdersMemory_SCHEMA_AND_DATA;
 GO
@@ -70,7 +70,7 @@ GO
 
 -- Запускаем хранимую процедуру
 EXEC Sales.OrdersMemory_SCHEMA_AND_DATA_Insert @RowCount = 50000;
---27-31 s
+--27 s
 -- Проверяем
 SELECT COUNT(*) FROM Sales.OrdersMemory_SCHEMA_AND_DATA;
 GO
@@ -87,8 +87,10 @@ SELECT COUNT(*) FROM Sales.OrdersMemory_SCHEMA_AND_DATA;
 GO
 
 -- Запускаем хранимую процедуру
-EXEC Sales.OrdersMemory_SCHEMA_AND_DATA_Insert_Native @RowCount = 50000;
+EXEC Sales.OrdersMemory_SCHEMA_AND_DATA_Insert_Native @RowCount = 100000;
 --0s
 -- Проверяем
 SELECT COUNT(*) FROM Sales.OrdersMemory_SCHEMA_AND_DATA;
 GO
+
+SELECT top 10 * FROM Sales.OrdersMemory_SCHEMA_AND_DATA;
